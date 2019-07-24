@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      virtualdom
+    </title>
+    <script src="script.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 1rem;
+      }
+      /* #app {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #c0c0c0;
+        background-color: #efefef;
+      } */
+      .button {
+        font-family: inherit;
+        border: 1px solid #bbbbbb;
+        background-color: #cccccc;
+        color: #000;
+        padding: 1rem;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      .button:hover,
+      .button:active,
+      .button:focus {
+        background-color: #bbbbbb;
+      }
+      .button-primary {
+        background-color: #b2ff00;
+        border: 1px solid #98da00;
+      }
+      .button-primary:hover,
+      .button-primary:active,
+      .button-primary:focus {
+        background-color: #98da00;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1>virtualdom</h1> -->
+    <!-- <div>
+      <p>
+        Hi! I'm <a href="http://github.com/nshntarora">@nshntarora</a>,<br/>
+        and I've recently started to brush up my concepts.<br/>
+        This project is an attempt to implement a Virtual DOM to understand how it works.
+      </p>
+      <p>
+        Here's how it will work,
+        <ol>
+          <li>
+            Click on "Start" button below
+          </li>
+          <br/>
+          <i>You'll notice some elements are rendered</i>
+          <br/>
+          <br/>
+          <li>
+            Now, open your DevTools and go to the elements inspector.
+          </li>
+          <li>
+            Locate the elements that were just created.
+          </li>
+          <li>
+            Keep DevTools open and click on reload.
+          </li>
+          <br/>
+          <i>
+            You will see an element is updated.<br/>
+            Your elements inspector will highlight only the element that has changed.<br/>
+            If you missed the highlight, reload the page and click on "Reload".<br/>
+            This time, keep your eyes on the elements inspector.
+          </i>
+
+        </ol>
+      </p>
+    </div> -->
+    <!-- <button type="button" class="button" onclick="handleStart()">Start</button>
+    <button type="button" class="button button-primary" onclick="handleReload()">Reload</button> -->
+    <div id="app"></div>
+  </body>
+</html>
