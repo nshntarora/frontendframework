@@ -8,23 +8,60 @@ function render(type, attributes, children) {
 
 const rootComponent = {
   state: {
-    name: ""
+    name: "",
+    task: "",
+    taskList: ["do something"]
   },
   render(h) {
-    return h("div", {}, [
-      h("input", {
-        events: {
-          input: e => {
-            this.name = e.target.value;
-          }
-        },
+    return h(
+      "div",
+      {
         attrs: {
-          value: this.name
+          class: "d-flex align-items-center justify-content-center h-100 w-100"
         }
-      }),
-      this.name,
-      childComponent.render(h)
-    ]);
+      },
+      [
+        h(
+          "div",
+          { attrs: { class: "h-50 w-50 bg-white rounded shadow p-3" } },
+          [
+            h("div", { attrs: { class: "input-group" } }, [
+              h("input", {
+                attrs: {
+                  value: this.task,
+                  class: "form-control form-control-lg",
+                  placeholder: "Enter Task"
+                },
+                events: {
+                  input: e => {
+                    this.task = e.target.value;
+                  }
+                }
+              }),
+              h("div", { attrs: { class: "input-group-append" } }, [
+                h(
+                  "button",
+                  {
+                    attrs: { class: "btn btn-primary" },
+                    events: {
+                      click: e => {
+                        console.log("Clicked on button", e);
+                        this.taskList = [...this.taskList, this.task];
+                        this.task = "";
+                      }
+                    }
+                  },
+                  ["Add Task"]
+                )
+              ])
+            ]),
+            ...this.taskList.map(task =>
+              h("div", { attrs: { class: "p-3 border-bottom" } }, [task])
+            )
+          ]
+        )
+      ]
+    );
   }
 };
 
@@ -115,7 +152,6 @@ function diffNodes(oldnode, newnode) {
 
 function updateNode(parent, oldnode, newnode, index = 0) {
   // Let's start simple. If the old node does not exist.
-  console.log("Update ", oldnode ? oldnode.type : "", oldnode, newnode);
   if (!oldnode) {
     // Then, just simple append the new node
     parent.appendChild(createDOMNode(newnode));
