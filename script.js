@@ -10,7 +10,10 @@ const rootComponent = {
   state: {
     name: "",
     task: "",
-    taskList: ["do something"]
+    taskList: [
+      "Take the internals of vue session",
+      "Learn about internals of vue"
+    ]
   },
   render(h) {
     return h(
@@ -45,7 +48,6 @@ const rootComponent = {
                     attrs: { class: "btn btn-primary" },
                     events: {
                       click: e => {
-                        console.log("Clicked on button", e);
                         this.taskList = [...this.taskList, this.task];
                         this.task = "";
                       }
@@ -83,12 +85,6 @@ function makeReactive(component) {
   });
   return reactiveComponent;
 }
-
-const childComponent = {
-  render(h) {
-    return h("b", {}, ["Hello"]);
-  }
-};
 
 function createDOMNode(dom) {
   // First we check if the node is a string.
@@ -166,9 +162,7 @@ function updateNode(parent, oldnode, newnode, index = 0) {
   } else if (newnode.type) {
     // If the old and new nodes haven't changed, check if their children have changed
     // Recursion to the rescue. Loop through all children and call this function on each one of them.
-
-    if (oldnode.attrs !== newnode.attrs) {
-      // console.log("Attributes are changed", parent, parent.childNodes[index]);
+    if (JSON.stringify(oldnode.attrs) !== JSON.stringify(newnode.attrs)) {
       if (parent.childNodes[index]) {
         Object.keys(oldnode.attrs).forEach(attr => {
           parent.childNodes[index].removeAttribute(attr);
